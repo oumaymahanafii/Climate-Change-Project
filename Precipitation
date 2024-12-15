@@ -1,0 +1,20 @@
+// Charger la collection de données de précipitation de l'ERA5
+var precipitationDataset = ee.ImageCollection("ECMWF/ERA5_LAND/HOURLY")
+                               .select('total_precipitation');
+
+var roi = ee.FeatureCollection("projects/ee-projetpatrimoinemixt/assets/Kairouan")
+// Filtrer les données pour la période et la région
+var precipitationData = precipitationDataset.filterDate('2020-01-01', '2024-10-31').filterBounds(roi);
+
+// Calculer la précipitation moyenne pour la période
+var precipitationMean = precipitationData.mean();
+Map.addLayer(precipitationMean, {min: 0, max: 0.1, palette: ['white', 'blue']}, 'Précipitations Moyennes');
+
+// Exporter les données
+Export.image.toDrive({
+  image: precipitationMean,
+  description: 'Precipitation_Mean',
+  scale: 1000,
+  region: roi,
+  fileFormat: 'GeoTIFF'
+});
