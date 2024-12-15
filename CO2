@@ -1,0 +1,21 @@
+// Charger les collections de données pour les précipitations et la température
+var datasetTemp = ee.ImageCollection("ECMWF/ERA5_LAND/HOURLY")
+                   .select('temperature_2m');
+var datasetPrecip = ee.ImageCollection("ECMWF/ERA5_LAND/HOURLY")
+                     .select('total_precipitation');
+
+// Définir une région d'intérêt (ici, un rectangle couvrant une zone géographique)
+var roi = ee.FeatureCollection("projects/ee-projetpatrimoinemixt/assets/Kairouan");
+Map.addLayer(roi)
+// Définir une période d'étude
+var startDate = '2020-01-01';
+var endDate = '2023-01-01';
+
+// Filtrer les données pour la période et la région définies
+var temp = datasetTemp.filterDate(startDate, endDate).filterBounds(roi);
+var precip = datasetPrecip.filterDate(startDate, endDate).filterBounds(roi);
+
+// Afficher les données sur la carte
+Map.centerObject(roi, 5);
+Map.addLayer(temp.mean(), {min: 250, max: 300, palette: ['blue', 'yellow', 'red']}, 'Température Moyenne');
+Map.addLayer(precip.mean(), {min: 0, max: 0.1, palette: ['white', 'blue']}, 'Précipitations Moyennes');
