@@ -1,0 +1,46 @@
+// Charger la collection de données de température de l'ERA5
+var temperatureDataset = ee.ImageCollection("ECMWF/ERA5_LAND/HOURLY")
+                            .select('temperature_2m');
+
+// Définir la région d'intérêt
+var roi = ee.FeatureCollection("projects/ee-projetpatrimoinemixt/assets/Tunisie");
+
+// Définir la période d'étude
+var startDate = ee.Date('2020-01-01');
+var endDate = ee.Date('2023-01-01');
+
+// Filtrer les données pour la période et la région
+var temperatureData = temperatureDataset.filterDate(startDate, endDate).filterBounds(roi);
+
+// Calculer la température moyenne mensuelle
+var monthlyTemperature = ee.ImageCollection(
+  ee.List.sequence(0, endDate.difference(startDate, 'month').subtract(1))
+    .map(function(n) {
+      var start = startDate.advance(n, 'month');
+      var end = start.advance(1, 'month');
+      var monthlyMean = temperatureData.filterDate(start, end).mean();
+      return monthlyMean.set('month', start.format('YYYY-MM'))
+                        .set('system:time_start', start.millis());
+    })
+);
+
+// Créer une série temporelle de température pour la région
+var tempTimeSeries = monthlyTemperature.map(function(image) {
+  var mean = image.reduceRegion({
+    reducer: ee.Reducer.mean(),
+    geometry: roi,
+    scale: 1000
+  }).get('temperature_2m');
+  return ee.Feature(null, {'temperature': mean, 'date': image.get('month')});
+});
+
+// Afficher les données sous forme de graphique
+var chart = ui.Chart.feature.byFeature(tempTimeSeries, 'date', 'temperature')
+             .setOptions({
+               title: 'Série temporelle de la température moyenne',
+               hAxis: {title: 'Date'},
+               vAxis: {title: 'Température (K)'},
+               lineWidth: 2,
+               pointSize: 4
+             });
+print(chart);
