@@ -1,54 +1,51 @@
-# 🌍 Évolution des Techniques d'IA dans la Prévision Climatique  
+# 🌍 Evolution of AI Techniques in Climate Forecasting  
 
-## 📖 Description du Projet  
-Ce projet explore l'utilisation des techniques d'Intelligence Artificielle (IA) pour améliorer les prévisions climatiques. L'objectif est de comparer différentes approches d'IA et de proposer des méthodologies modernes pour mieux comprendre les tendances climatiques.  
+## 📖 Project Description  
+This project explores the use of Artificial Intelligence (AI) techniques to improve climate forecasting. The goal is to compare different AI approaches and propose modern methodologies to better understand climate trends.  
 
-Grâce à ce projet, nous étudions comment les algorithmes d'IA peuvent être appliqués à des données climatiques pour prédire des phénomènes comme les variations de température, les précipitations et d'autres variables atmosphériques.  
-
----
-
-## 🎯 Objectifs  
-- **Analyser les algorithmes d'IA** utilisés pour la prévision climatique.  
-- **Comparer les performances** des modèles de Machine Learning (ML) et Deep Learning (DL).  
-- Fournir des résultats reproductibles pour la communauté scientifique.  
+Through this project, we study how AI algorithms can be applied to climate data to predict phenomena such as temperature variations, precipitation, and other atmospheric variables.  
 
 ---
 
-## 🗂️ Structure du Repository  
-AI-Climate-Forecasting/         # Dossier principal du projet  
+## 🎯 Objectives  
+- **Analyze AI algorithms** used for climate forecasting.  
+- **Compare the performance** of Machine Learning (ML) and Deep Learning (DL) models.  
+- Provide reproducible results for the scientific community.  
+
+---
+
+## 🗂️ Repository Structure  
+AI-Climate-Forecasting/         # Main project directory  
 │  
-├── README.md                   # Fichier README avec la description de ton projet  
-├── datasets/                   # Dossier contenant les données climatiques utilisées (CSV, GeoJSON, etc.)  
-├── notebooks/                  # Dossier pour les notebooks Jupyter (.ipynb)  
-├── src/                        # Dossier pour tous les scripts Python ou autres  
-│   ├── preprocessing/          # Scripts pour le nettoyage et la préparation des données  
-│   ├── models/                 # Scripts pour les modèles d'IA  
+├── README.md                   # README file with the project description  
+├── datasets/                   # Directory containing climate datasets (CSV, GeoJSON, etc.)  
+├── notebooks/                  # Directory for Jupyter notebooks (.ipynb)  
+├── src/                        # Directory for Python scripts or other code  
+│   ├── preprocessing/          # Scripts for data cleaning and preparation  
+│   ├── models/                 # Scripts for AI models  
 │  
-├── docs/                       # Documentation supplémentaire (articles, tutoriels, références)  
-├── results/                    # Graphiques et résultats des modèles  
-└── LICENSE                     # Fichier contenant la licence de ton projet  
-
-
-
-
+├── docs/                       # Additional documentation (articles, tutorials, references)  
+├── results/                    # Visualizations and model results  
+└── LICENSE                     # Project license file  
 
 ---
 
-## 🔍 Données et Méthodes  
+## 🔍 Data and Methods  
 
-### **Sources de données**  
-- Données climatiques historiques et actuelles (ERA5, NOAA, Sentinel-2, GEE).  
-- Enrichissement des données par des indices spectraux (NDVI, NDWI, etc.).  
+### **Data Sources**  
+- Historical and current climate datasets (ERA5, NOAA, Sentinel-2, GEE).  
+- Data enrichment using spectral indices (NDVI, NDWI, etc.).  
 
-### **Algorithmes étudiés**  
-- *Machine Learning* : Random Forest, SVM, Decision Trees.  
-- *Deep Learning* : LSTM (pour les séries temporelles), CNN (pour les données spatiales).  
+### **Algorithms Studied**  
+- *Machine Learning*: Random Forest, SVM, Decision Trees.  
+- *Deep Learning*: LSTM (for time-series data), CNN (for spatial data).  
 
-### **Flux de travail**  
-1. Prétraitement des données climatiques (nettoyage et normalisation).  
-2. Entraînement des modèles IA sur des ensembles de données spécifiques.  
-3. Évaluation des modèles avec des métriques comme RMSE, précision, etc.  
-4. Visualisation des résultats pour interprétation.  
+### **Workflow**  
+1. Preprocessing of climate data (cleaning and normalization).  
+2. Training AI models on specific datasets.  
+3. Evaluating models with metrics such as RMSE, accuracy, etc.  
+4. Visualizing results for interpretation.  
+
 
 ---
 # Awesome-Foundation-Models-for-Weather-and-Climate
