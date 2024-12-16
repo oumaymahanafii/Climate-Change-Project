@@ -49,13 +49,11 @@ AI-Climate-Forecasting/         # Main project directory
 
 ---
 # Awesome-Foundation-Models-for-Weather-and-Climate
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-green) 
 ![Stars](https://img.shields.io/github/stars/shengchaochen82/Awesome-Foundation-Models-for-Weather-and-Climate)
 
 A professionally curated list of **Large Foundation Models for Weather and Climate Data Understanding (e.g., time-series, spatio-temporal series, video streams, graphs, and text)** with awesome resources (paper, code, data, etc.), which aims to comprehensively and systematically summarize the recent advances to the best of our knowledge.
 
-**OPEN TO COLLABORATION! If you have any new insights in any relevant research direction or just want to chat, please drop me an email (shengchao.chen.uts AT gmail DOT com).**
+
 
 **<font color="red">[*New*, Paper]</font>** Our research paper: [Personalized Adapter for Large Meteorology Model on Devices: Towards Weather Foundation Models](https://arxiv.org/abs/2405.20348) has accepted by **NeurIPS 2024**, which introduces a language model-based solution for real-world multi-device meteorological variable modeling.
 
@@ -64,7 +62,6 @@ A professionally curated list of **Large Foundation Models for Weather and Clima
 >**Abstract**:
 Recent advances in deep learning (DL) have significantly enhanced our capability to analyze and interpret weather and climate data, especially at fine spatio-temporal scales, helping unravel the chaotic and nonlinear patterns of Earth's systems. The emergence of Foundation Models, particularly Large Language Models (LLMs), has catalyzed advances in Artificial General Intelligence, delivering outstanding outcomes across various tasks through fine-tuning. The success of LLMs presents a novel opportunity to rethink the task of weather and climate data understanding: **Is it possible to utilize or evolve Foundation Models for weather and climate data to enhance the accuracy of task completion?** This survey evaluates the potential of adapting Foundation Models to enhance weather and climate data analysis. We present a concise, up-to-date review of cutting-edge AI techniques tailored for this domain, concentrating on time series and textual information. We cover four key areas: data types, model architectures, application scopes, and task-specific datasets. Furthermore, we address prevailing challenges, provide insights, and outline future research directions, empowering practitioners to advance the field. The survey distills the latest innovations in data-driven models, underscoring foundational strength, progress, applications, resources, and research frontiers, thus offering a roadmap for transformative advancements in weather and climate data understanding.
 
-**We will continue to update this list with the newest resources. If you find any missed resources (paper/code) or errors, please feel free to open an issue or make a pull request.**
 
 ___
 ## Large Foundation Models for Weather and Climate
@@ -328,9 +325,9 @@ ___
   year={2023}
 }
 
-## 🚀 Comment Exécuter le Projet  
+## 🚀 How to Run the Project  
 
-1. **Clonez le Repository**  
+1. **Clone the Repository**  
    ```bash
    git clone https://github.com/username/AI-Climate-Forecasting.git
    cd AI-Climate-Forecasting
