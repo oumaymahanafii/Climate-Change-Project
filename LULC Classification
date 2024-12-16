@@ -1,0 +1,94 @@
+var merged = class1
+                   .merge(class2)
+                   .merge(class3)
+                   .merge(class N);             
+print(merged);
+
+var image = S2.select(['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9', 'b10']); #Number of bands
+print(image);
+
+// 5-Bands names
+// var Bands_selection=['b1','b2', 'b3','b4', 'b5','b6', 'b7','b8', 'b9','b10', 'b11','b12'];
+var S2 = image.bandNames();  
+print(S2);
+
+// 6-Sampling image 
+var sampled = image.sampleRegions({
+  collection: merged,
+  properties: ['GRIDCODE'],
+  scale:10
+});
+print(sampled);
+// 7-Splitting sampling
+var random_column = sampled.randomColumn();
+var training_sample = random_column.filter(ee.Filter.gte('random',0.7));
+var validation_sample =random_column.filter(ee.Filter.gte('random',0.3));
+
+//8-classification algorith
+var classifier = ee.Classifier.smileRandomForest(300,4).train({
+    features:training_sample,
+    classProperty:'GRIDCODE',
+    inputProperties: S2
+});
+// 9- Classification of the image
+var classified = image.classify(classifier);
+print(classified);
+Map.addLayer(classified, {min:0, max: N, palette: 
+                              ['#DFC3E4', '#ff9900', '#e6ff99', '#00cc00'] }
+                                                  , 'S2');
+                                                  
+  // 9- Accuracy assessment
+var classified_1 = validation_sample.classify(classifier);
+var error_matrix = classified_1.errorMatrix({
+    actual:'GRIDCODE',
+    predicted:'classification'
+});
+        var total_accuracy = error_matrix.accuracy();
+print(total_accuracy, 'Total Accuracy');
+
+var user_accuracy = error_matrix.consumersAccuracy();
+print(user_accuracy, 'Users Accuracy');
+
+var producer_accuracy = error_matrix.producersAccuracy();
+print(producer_accuracy, 'Producer Accuracy');
+
+var Kappa = error_matrix.kappa();
+print(Kappa, 'Kappa Coefficient');
+
+var confusionMatrix = classifier.confusionMatrix();
+print('Confusion matrix: ', confusionMatrix);                        
+ 
+ //////////////////////////////////////////
+
+//-------------Estimation of Area in Ha------------------/
+var names = ['class 1', 
+            'class 2', 
+            'class 3',
+            'class N']
+            
+var count = classified.eq([0,1,2,3])
+var total = count.multiply(ee.Image.pixelArea()).divide(1e4).rename(names);
+var area = total.reduceRegion({
+ reducer:ee.Reducer.sum(),
+  geometry:roi,
+  scale:10,
+ maxPixels: 1e12,
+ bestEffort:true
+});
+print ('Area in (Ha):', area); 
+                                                  
+                                                  
+//////////////////////////////////////////////////////////////
+/////---------------------Export-------------------------
+//////////////////////////////////////////////////////////////
+ Export.image.toDrive({
+    image: classified,
+    description: 'S2',
+    scale: 10,
+    region: roi ,
+    crs:   'EPSG:22332',
+    maxPixels:1e12,
+    fileFormat: 'GeoTIFF',
+    formatOptions: {
+      cloudOptimized: true }
+});
