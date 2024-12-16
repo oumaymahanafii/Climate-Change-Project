@@ -37,7 +37,7 @@ AI-Climate-Forecasting/         # Dossier principal du projet
 ## 🔍 Données et Méthodes  
 
 ### **Sources de données**  
-- Données climatiques historiques et actuelles (ERA5, NOAA, Sentinel-2).  
+- Données climatiques historiques et actuelles (ERA5, NOAA, Sentinel-2, GEE).  
 - Enrichissement des données par des indices spectraux (NDVI, NDWI, etc.).  
 
 ### **Algorithmes étudiés**  
